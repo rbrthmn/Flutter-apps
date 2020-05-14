@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:chat/ui/chat_message.dart';
 import 'package:chat/ui/text_composer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -42,6 +43,7 @@ class _ChartScreenState extends State<ChartScreen> {
       final FirebaseUser user = authResult.user;
       return user;
     } catch (error) {
+      print(error);
       return null;
     }
   }
@@ -74,7 +76,7 @@ class _ChartScreenState extends State<ChartScreen> {
       data["imgUrl"] = url;
     }
 
-    if (text != null) data['text'] = text;
+    if(text != null) data['text'] = text;
 
     Firestore.instance.collection("messages").add(data);
   }
@@ -105,7 +107,7 @@ class _ChartScreenState extends State<ChartScreen> {
                         itemCount: documents.length,
                         reverse: true,
                         itemBuilder: (context, index) {
-                          return ChatMessage(do)
+                          return ChatMessage(documents[index].data, true);
                         }
                     );
                   }
