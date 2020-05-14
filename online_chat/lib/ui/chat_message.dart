@@ -8,13 +8,16 @@ class ChatMessage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    data.keys.forEach((f) {
+      print(f);
+    });
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
       child: Row(children: <Widget>[
         !mine ?
         Padding(
           child: CircleAvatar(
-            backgroundImage: NetworkImage(data['senderPhoroUrl']),
+            backgroundImage: NetworkImage(data['senderPhotoUrl']),
           ),
           padding: EdgeInsets.only(right: 16),
         ) : Container(),
@@ -42,7 +45,7 @@ class ChatMessage extends StatelessWidget {
         mine ?
         Padding(
           child: CircleAvatar(
-            backgroundImage: NetworkImage(data['senderPhoroUrl']),
+            backgroundImage: NetworkImage(data['senderPhotoUrl']),
           ),
           padding: EdgeInsets.only(left: 16),
         ) : Container(),
