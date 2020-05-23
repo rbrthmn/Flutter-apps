@@ -5,10 +5,15 @@ import 'package:virtualshop/screens/signup_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         title: Text("Login"),
         centerTitle: true,
@@ -35,6 +40,7 @@ class LoginScreen extends StatelessWidget {
               padding: EdgeInsets.all(16.0),
               children: <Widget>[
                 TextFormField(
+                  controller: _emailController,
                   decoration: InputDecoration(hintText: "E-mail"),
                   keyboardType: TextInputType.emailAddress,
                   // ignore: missing_return
@@ -45,6 +51,7 @@ class LoginScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 16.0),
                 TextFormField(
+                  controller: _passwordController,
                   decoration: InputDecoration(hintText: "Senha"),
                   obscureText: true,
                   // ignore: missing_return
@@ -55,7 +62,22 @@ class LoginScreen extends StatelessWidget {
                 Align(
                   alignment: Alignment.centerRight,
                   child: FlatButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      if(_emailController.text.isEmpty) {
+                        _scaffoldKey.currentState.showSnackBar(SnackBar(
+                          content: Text("Insira seu e-mail para recuperação"),
+                          backgroundColor: Colors.red,
+                          duration: Duration(seconds: 2),
+                        ));
+                      } else {
+                        model.recoverPass(_emailController.text);
+                        _scaffoldKey.currentState.showSnackBar(SnackBar(
+                          content: Text("Confira seu e-mail"),
+                          backgroundColor: Theme.of(context).primaryColor,
+                          duration: Duration(seconds: 2),
+                        ));
+                      }
+                    },
                     child: Text("Esqueci minha senha"),
                     padding: EdgeInsets.zero,
                   ),
@@ -75,6 +97,11 @@ class LoginScreen extends StatelessWidget {
                       if(_formKey.currentState.validate()) {
 
                       }
+                      model.signIn(
+                          email: _emailController.text,
+                          pass: _passwordController.text,
+                          onSuccess: _onSuccess,
+                          onFail: _onFail);
                     },
                   ),
                 )
@@ -84,5 +111,17 @@ class LoginScreen extends StatelessWidget {
           },
       ),
     );
+  }
+
+  void _onSuccess() {
+      Navigator.of(_scaffoldKey.currentContext).pop();
+  }
+
+  void _onFail() {
+    _scaffoldKey.currentState.showSnackBar(SnackBar(
+      content: Text("Falha ao entrar com usuário!"),
+      backgroundColor: Colors.red,
+      duration: Duration(seconds: 2),
+    ));
   }
 }
