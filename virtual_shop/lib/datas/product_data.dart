@@ -18,4 +18,7 @@ class ProductData {
     sizes = snapshot.data["sizes"];
   }
 
+  toResumeMap() {
+    return {"title": title, "description": description, "price": price};
+  }
 }

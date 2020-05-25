@@ -1,6 +1,11 @@
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
+import 'package:virtualshop/datas/cart_product.dart';
 import 'package:virtualshop/datas/product_data.dart';
+import 'package:virtualshop/models/cart_model.dart';
+import 'package:virtualshop/models/user_model.dart';
+import 'package:virtualshop/screens/cart_screen.dart';
+import 'package:virtualshop/screens/login_screen.dart';
 
 class ProductScreen extends StatefulWidget {
   final ProductData product;
@@ -104,23 +109,46 @@ class _ProductScreenState extends State<ProductScreen> {
                   SizedBox(
                     height: 44.0,
                     child: RaisedButton(
-                      onPressed: size!= null ? () {} : null,
+                      onPressed: size != null
+                          ? () {
+                              if (UserModel.of(context).isLoggedIn()) {
+
+                                CartProduct cartProduct = CartProduct();
+                                cartProduct.size = size;
+                                cartProduct.quantity = 1;
+                                cartProduct.pId = product.id;
+                                cartProduct.category = product.category;
+
+                                CartModel.of(context).addCartItem(cartProduct);
+
+                                Navigator.of(context).pushReplacement(MaterialPageRoute(
+                                    builder: (context) => CartScreen()));
+                              } else {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => LoginScreen()));
+                              }
+                            }
+                          : null,
                       child: Text(
-                        "Adicionar ao carrinho",
+                        UserModel.of(context).isLoggedIn()
+                            ? "Adicionar ao carrinho"
+                            : "Entre para comprar",
                         style: TextStyle(color: Colors.white, fontSize: 18.0),
                       ),
                       color: primaryColor,
                     ),
                   ),
-                  SizedBox(height: 16.0,),
+                  SizedBox(
+                    height: 16.0,
+                  ),
                   Text(
                     "Descrição",
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
                   ),
-                  Text(product.description,
-                  style: TextStyle(
-                    fontSize: 16
-                  ),)
+                  Text(
+                    product.description,
+                    style: TextStyle(fontSize: 16),
+                  )
                 ],
               ))
         ],
