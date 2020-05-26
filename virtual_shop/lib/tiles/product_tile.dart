@@ -12,7 +12,6 @@ class ProductTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        print(data);
         Navigator.of(context)
             .push(MaterialPageRoute(builder: (context) => ProductScreen(data)));
       },

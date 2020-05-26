@@ -3,7 +3,12 @@ import 'package:scoped_model/scoped_model.dart';
 import 'package:virtualshop/models/user_model.dart';
 import 'package:virtualshop/screens/signup_screen.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
+  @override
+  _LoginScreenState createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -24,16 +29,18 @@ class LoginScreen extends StatelessWidget {
               style: TextStyle(color: Colors.white, fontSize: 15.0),
             ),
             onPressed: () {
-              Navigator.of(context).pushReplacement(MaterialPageRoute(
-                builder: (context) => SignUpScreen()
-              ));
+              Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(builder: (context) => SignUpScreen()));
             },
           )
         ],
       ),
       body: ScopedModelDescendant<UserModel>(
         builder: (context, child, model) {
-          if(model.isLoading) return Center(child: CircularProgressIndicator(),);
+          if (model.isLoading)
+            return Center(
+              child: CircularProgressIndicator(),
+            );
           return Form(
             key: _formKey,
             child: ListView(
@@ -56,14 +63,15 @@ class LoginScreen extends StatelessWidget {
                   obscureText: true,
                   // ignore: missing_return
                   validator: (text) {
-                    if (text.isEmpty || text.length < 6) return "Senha inválida";
+                    if (text.isEmpty || text.length < 6)
+                      return "Senha inválida";
                   },
                 ),
                 Align(
                   alignment: Alignment.centerRight,
                   child: FlatButton(
                     onPressed: () {
-                      if(_emailController.text.isEmpty) {
+                      if (_emailController.text.isEmpty) {
                         _scaffoldKey.currentState.showSnackBar(SnackBar(
                           content: Text("Insira seu e-mail para recuperação"),
                           backgroundColor: Colors.red,
@@ -87,16 +95,14 @@ class LoginScreen extends StatelessWidget {
                 ),
                 SizedBox(
                   height: 44.0,
-                  child:  RaisedButton(
+                  child: RaisedButton(
                     child: Text(
                       "Entrar",
                       style: TextStyle(color: Colors.white, fontSize: 18),
                     ),
                     color: Theme.of(context).primaryColor,
                     onPressed: () {
-                      if(_formKey.currentState.validate()) {
-
-                      }
+                      if (_formKey.currentState.validate()) {}
                       model.signIn(
                           email: _emailController.text,
                           pass: _passwordController.text,
@@ -108,13 +114,13 @@ class LoginScreen extends StatelessWidget {
               ],
             ),
           );
-          },
+        },
       ),
     );
   }
 
   void _onSuccess() {
-      Navigator.of(_scaffoldKey.currentContext).pop();
+    Navigator.of(_scaffoldKey.currentContext).pop();
   }
 
   void _onFail() {

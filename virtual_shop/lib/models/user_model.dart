@@ -38,7 +38,6 @@ class UserModel extends Model {
       isLoading = false;
       notifyListeners();
     }).catchError((e) {
-      print(e);
       onFail();
       isLoading = false;
       notifyListeners();
@@ -73,6 +72,8 @@ class UserModel extends Model {
     await _auth.signOut();
     userData = Map();
     firebaseUser = null;
+
+    notifyListeners();
   }
 
   void recoverPass(String email) {
@@ -94,12 +95,15 @@ class UserModel extends Model {
   Future<Null> _loadCurrentUser() async {
     if (firebaseUser == null) {
       firebaseUser = await _auth.currentUser();
-    } else if (userData["name"] == null) {
-      DocumentSnapshot docUser = await Firestore.instance
-          .collection("users")
-          .document(firebaseUser.uid)
-          .get();
-      userData = docUser.data;
+    }
+    if (firebaseUser != null) {
+      if (userData["name"] == null) {
+        DocumentSnapshot docUser = await Firestore.instance
+            .collection("users")
+            .document(firebaseUser.uid)
+            .get();
+        userData = docUser.data;
+      }
     }
     notifyListeners();
   }

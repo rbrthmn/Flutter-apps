@@ -7,6 +7,7 @@ import 'package:virtualshop/models/user_model.dart';
 class CartModel extends Model {
   UserModel user;
   List<CartProduct> products = [];
+  bool isLoading = false;
 
   CartModel(this.user);
 
@@ -37,6 +38,31 @@ class CartModel extends Model {
         .delete();
 
     products.remove(cartProduct);
+    notifyListeners();
+  }
+
+  void decProduct(CartProduct cartProduct) {
+    cartProduct.quantity--;
+
+    Firestore.instance
+        .collection("users")
+        .document(user.firebaseUser.uid)
+        .collection("cart")
+        .document(cartProduct.cId)
+        .updateData(cartProduct.toMap());
+
+    notifyListeners();
+  }
+  void incProduct(CartProduct cartProduct) {
+    cartProduct.quantity++;
+
+    Firestore.instance
+        .collection("users")
+        .document(user.firebaseUser.uid)
+        .collection("cart")
+        .document(cartProduct.cId)
+        .updateData(cartProduct.toMap());
+
     notifyListeners();
   }
 }
