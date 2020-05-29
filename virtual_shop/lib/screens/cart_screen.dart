@@ -4,7 +4,9 @@ import 'package:scoped_model/scoped_model.dart';
 import 'package:virtualshop/models/cart_model.dart';
 import 'package:virtualshop/models/user_model.dart';
 import 'package:virtualshop/screens/login_screen.dart';
+import 'package:virtualshop/screens/order_screen.dart';
 import 'package:virtualshop/tiles/cart_tile.dart';
+import 'package:virtualshop/widgets/cart_price.dart';
 import 'package:virtualshop/widgets/discount_card.dart';
 import 'package:virtualshop/widgets/ship_card.dart';
 
@@ -79,12 +81,19 @@ class CartScreen extends StatelessWidget {
             return ListView(
               children: <Widget>[
                 Column(
-                  children: model.products.map((product) {
-                    return CartTile(product);
-                  }).toList()
-                ),
+                    children: model.products.map((product) {
+                  return CartTile(product);
+                }).toList()),
                 DiscountCard(),
-                ShipCard()
+                ShipCard(),
+                CartPrice(() async {
+                  String orderId = await model.finishOrder();
+
+                  if (orderId != null) {
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(
+                        builder: (context) => OrderScreen(orderId)));
+                  }
+                })
               ],
             );
           }
