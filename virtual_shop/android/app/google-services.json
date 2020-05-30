@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "467618574702",
+    "firebase_url": "https://fluttershop-c8189.firebaseio.com",
+    "project_id": "fluttershop-c8189",
+    "storage_bucket": "fluttershop-c8189.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:467618574702:android:9b458eba94807d32de517f",
+        "android_client_info": {
+          "package_name": "hamano.com.virtualshop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "467618574702-eu0ll0nnedltoefk8u9u6fjdaa9ivlml.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCuRYoUi6PfB89zDuTLSBPZiR3B2VWMchc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "467618574702-eu0ll0nnedltoefk8u9u6fjdaa9ivlml.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
