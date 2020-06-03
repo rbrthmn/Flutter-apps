@@ -1,6 +1,6 @@
-# flaretest
+# youtubefavorites
 
-A Flutter app to test vector animations using Flare.
+A Flutter app to search, explore and save Youtube favorites videos using BLoC Pattern.
 
 ## Getting Started
 
