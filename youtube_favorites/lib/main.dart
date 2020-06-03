@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:youtubefavorites/api.dart';
 
 import 'screens/home.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -13,6 +16,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: Home(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
