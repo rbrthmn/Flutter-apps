@@ -4,6 +4,7 @@ import 'package:youtubefavorites/blocs/favorite_bloc.dart';
 import 'package:youtubefavorites/blocs/videos_bloc.dart';
 import 'package:youtubefavorites/delegates/data_search.dart';
 import 'package:youtubefavorites/models/video.dart';
+import 'package:youtubefavorites/screens/favorites.dart';
 import 'package:youtubefavorites/widgets/video_tile.dart';
 
 class Home extends StatelessWidget {
@@ -31,7 +32,9 @@ class Home extends StatelessWidget {
           ),
           IconButton(
             icon: Icon(Icons.star),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => Favorites()));
+            },
           ),
           IconButton(
             icon: Icon(Icons.search),
@@ -46,7 +49,6 @@ class Home extends StatelessWidget {
       backgroundColor: Colors.black87,
       body: StreamBuilder(
         stream: bloc.outVideos,
-        initialData: [],
         builder: (context, snapshot) {
           if (snapshot.hasData)
             return ListView.builder(
