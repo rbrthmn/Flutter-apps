@@ -1,6 +1,8 @@
+import 'package:complexanimations/screens/home/home.dart';
 import 'package:complexanimations/screens/login/widgets/form_container.dart';
 import 'package:complexanimations/screens/login/widgets/sign_up_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart' show timeDilation;
 
 import 'widgets/stagger_animation.dart';
 
@@ -19,6 +21,12 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
     _animationController =
         AnimationController(vsync: this, duration: Duration(seconds: 2));
 
+    _animationController.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (context)=>Home()));
+    }
+    });
   }
 
   @override
@@ -29,6 +37,8 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    timeDilation = 1;
+
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
@@ -55,7 +65,7 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
                   ],
                 ),
                 StaggerAnimation(
-                  controller: _animationController.view
+                    controller: _animationController.view
                 )
               ],
             )
