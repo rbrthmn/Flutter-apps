@@ -8,7 +8,7 @@ abstract class _LoginStore with Store {
 
   _LoginStore() {
     autorun((_){
-      print(email);
+      print(isFormValid);
     });
   }
 
@@ -24,4 +24,19 @@ abstract class _LoginStore with Store {
   @action
   void setPassword(String value) => password = value;
 
+  @observable
+  bool passwordVisible = false;
+
+  @action
+  void tooglePasswordVisibility() => passwordVisible = !passwordVisible;
+
+  @computed
+  bool get isPasswordValid => password.length >= 6;
+
+  @computed
+  bool get isEmailValid => RegExp(r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*$")
+      .hasMatch(email);
+
+  @computed
+  bool get isFormValid => isEmailValid && isPasswordValid;
 }
