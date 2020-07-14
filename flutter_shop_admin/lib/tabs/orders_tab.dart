@@ -22,7 +22,7 @@ class OrdersTab extends StatelessWidget {
                 child: Text("Nenhum pedido encontrado!"),
               );
             return ListView.builder(
-                itemCount: 6,
+                itemCount: snapshot.data.length,
                 itemBuilder: (context, index) {
                   return OrderTile(snapshot.data[index]);
                 });

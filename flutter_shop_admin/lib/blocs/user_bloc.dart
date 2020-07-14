@@ -23,6 +23,15 @@ class UserBloc extends BlocBase {
     }
   }
 
+  Map<String, dynamic> getUser(String uid) {
+    return _users[uid];
+  }
+
+  @override
+  void dispose() {
+    _userController.close();
+  }
+
   List<Map<String, dynamic>> _filter(String search) {
     List<Map<String, dynamic>> filteredUsers =
         List.from(_users.values.toList());
@@ -85,10 +94,5 @@ class UserBloc extends BlocBase {
 
   void _unsubscribeToOrders(String uid) {
     _users[uid]["subscription"].cancel();
-  }
-
-  @override
-  void dispose() {
-    _userController.close();
   }
 }
