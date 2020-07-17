@@ -62,7 +62,6 @@ class _ProductScreenState extends State<ProductScreen> {
                     onSaved: (text) {},
                     validator: (text) {},
                   ),
-                  ImagesWidget().
                   TextFormField(
                     initialValue: snapshot.data["description"],
                     style: _fieldStyle,
