@@ -1,9 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'image_source_sheet.dart';
+
 class ImagesWidget extends FormField<List> {
   ImagesWidget(
-      {FormFieldSetter<List> onSaved,
+      {BuildContext context,
+      FormFieldSetter<List> onSaved,
       FormFieldValidator<List> validator,
       List initialValue,
       bool autoValidate = false})
@@ -46,7 +49,18 @@ class ImagesWidget extends FormField<List> {
                             ),
                             color: Colors.white.withAlpha(50),
                           ),
-                          onTap: () {},
+                          onTap: () {
+                            showModalBottomSheet(
+                                context: context,
+                                builder: (context) =>
+                                    ImageSourceSheet(onImageSelected: (image) {
+                                      if (image != null) {
+                                        state.value.add(image);
+                                        state.didChange(state.value);
+                                      }
+                                      Navigator.of(context).pop();
+                                    }));
+                          },
                         )),
                     ),
                   ),
