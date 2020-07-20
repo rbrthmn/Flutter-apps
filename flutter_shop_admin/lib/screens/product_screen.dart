@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttershopadmin/blocs/products_bloc.dart';
 import 'package:fluttershopadmin/validators/product_validator.dart';
 import 'package:fluttershopadmin/widgets/images_widget.dart';
+import 'package:fluttershopadmin/widgets/products_size.dart';
 
 class ProductScreen extends StatefulWidget {
   final String categoryId;
@@ -115,6 +116,18 @@ class _ProductScreenState extends State<ProductScreen> with ProductValidator {
                             TextInputType.numberWithOptions(decimal: true),
                         onSaved: _productBloc.savePrice,
                         validator: validatorPrice,
+                      ),
+                      SizedBox(height: 16),
+                      Text("Tamanhos",
+                          style: TextStyle(color: Colors.grey, fontSize: 12)),
+                      ProductSizes(
+                        context: context,
+                        initialValue: snapshot.data["sizes"],
+                        onSaved: _productBloc.saveSizes,
+                        validator: (s) {
+                          if(s.isEmpty) return "";
+                          return null;
+                        },
                       )
                     ],
                   );

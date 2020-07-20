@@ -41,6 +41,10 @@ class ProductBloc extends BlocBase {
     unsavedData["images"] = images;
   }
 
+  void saveSizes(List sizes) {
+    unsavedData["sizes"] = sizes;
+  }
+
   void saveTitle(String title) {
     unsavedData["title"] = title;
   }
