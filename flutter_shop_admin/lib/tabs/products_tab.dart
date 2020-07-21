@@ -12,8 +12,8 @@ class ProductsTab extends StatefulWidget {
 class _ProductsTabState extends State<ProductsTab> with KeepAliveParentDataMixin{
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<QuerySnapshot>(
-      future: Firestore.instance.collection("products").getDocuments(),
+    return StreamBuilder<QuerySnapshot>(
+      stream: Firestore.instance.collection("products").snapshots(),
       builder: (context, snapshot) {
         if (!snapshot.hasData)
           return Center(
