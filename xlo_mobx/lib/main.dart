@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:parse_server_sdk/parse_server_sdk.dart';
+import 'package:xlomobx/screens/base/base_screen.dart';
+import 'package:xlomobx/stores/page_store.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await initializeParse();
+  setUpLocators();
   runApp(MyApp());
+}
 
+Future<void> initializeParse() async {
   await Parse().initialize(
       '',
       '',
@@ -13,18 +21,25 @@ void main() async {
   );
 }
 
+void setUpLocators() {
+  GetIt.I.registerSingleton(PageStore());
+}
+
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'XLO',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.purple,
+        scaffoldBackgroundColor: Colors.purple,
+        appBarTheme: AppBarTheme(
+          elevation: 0
+        ),
+        cursorColor: Colors.orange
       ),
-      home: Container(),
+      debugShowCheckedModeBanner: false,
+      home: BaseScreen(),
     );
   }
-}
-
 }
