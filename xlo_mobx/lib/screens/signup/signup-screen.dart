@@ -2,9 +2,13 @@ import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:xlomobx/screens/signup/components/field_title.dart';
+import 'package:xlomobx/stores/signup_store.dart';
 
 class SignupScreen extends StatelessWidget {
+  final SignupStore signupStore = SignupStore();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,8 +23,8 @@ class SignupScreen extends StatelessWidget {
             padding: const EdgeInsets.only(bottom: 16),
             child: Card(
               margin: const EdgeInsets.symmetric(horizontal: 32),
-              shape:
-                  RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16)),
               elevation: 8,
               child: Padding(
                 padding: const EdgeInsets.all(16),
@@ -32,11 +36,17 @@ class SignupScreen extends StatelessWidget {
                       title: 'Apelido',
                       subtitle: 'Como aparecerá em seus anúncios.',
                     ),
-                    TextField(
-                      decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-                          hintText: 'Exemplo: John S.',
-                          isDense: true),
+                    Observer(
+                      builder: (_) {
+                        return TextField(
+                          decoration: InputDecoration(
+                              border: OutlineInputBorder(),
+                              hintText: 'Exemplo: John S.',
+                              isDense: true,
+                              errorText: signupStore.nameError),
+                          onChanged: signupStore.setName,
+                        );
+                      },
                     ),
                     const SizedBox(height: 16),
                     FieldTitle(
