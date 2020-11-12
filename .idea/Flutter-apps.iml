@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/complex_animations/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/complex_animations/build" />
+      <excludeFolder url="file://$MODULE_DIR$/contact_book/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/contact_book/build" />
+      <excludeFolder url="file://$MODULE_DIR$/currency_converter/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/currency_converter/build" />
+      <excludeFolder url="file://$MODULE_DIR$/flare_test/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/flare_test/build" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_shop_admin/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_shop_admin/build" />
+      <excludeFolder url="file://$MODULE_DIR$/gif_finder/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/gif_finder/build" />
+      <excludeFolder url="file://$MODULE_DIR$/imc_calculator/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/imc_calculator/build" />
+      <excludeFolder url="file://$MODULE_DIR$/online_chat/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/online_chat/build" />
+      <excludeFolder url="file://$MODULE_DIR$/people_counter/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/people_counter/build" />
+      <excludeFolder url="file://$MODULE_DIR$/to_do_list/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/to_do_list/build" />
+      <excludeFolder url="file://$MODULE_DIR$/todo_mobx/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/todo_mobx/build" />
+      <excludeFolder url="file://$MODULE_DIR$/virtual_shop/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/virtual_shop/build" />
+      <excludeFolder url="file://$MODULE_DIR$/youtube_favorites/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/youtube_favorites/build" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

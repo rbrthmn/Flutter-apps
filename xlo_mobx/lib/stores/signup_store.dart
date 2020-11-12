@@ -67,7 +67,7 @@ abstract class _SignupStore with Store {
   void setPass1(String value) => pass1 = value;
 
   @computed
-  bool get pass1Valid => phone != null && pass1.length > 6;
+  bool get pass1Valid => pass1 != null && pass1.length > 6;
   String get pass1Error {
     if (pass1 == null || pass1Valid) {
       return null;
@@ -82,16 +82,34 @@ abstract class _SignupStore with Store {
   String pass2;
 
   @action
-  void setPass2(String value) => pass1 = value;
+  void setPass2(String value) => pass2 = value;
 
   @computed
-  bool get pass2Valid => phone != null && pass2 == pass1;
+  bool get pass2Valid => pass2 != null && pass2 == pass1;
   String get pass2Error {
-    if (pass2 == null ||
-        pass2Valid) {
+    if (pass2 == null || pass2Valid) {
       return null;
     } else {
       return 'Senhas não coincidem';
     }
   }
+
+  @computed
+  bool get isFormValid =>
+      nameValid && emailValid && phoneValid && pass1Valid && pass2Valid;
+
+  @computed
+  Function get signUpPressed => (isFormValid && !loading) ? _signUp : null;
+  
+  @observable
+  bool loading = false;
+
+  Future<void> _signUp() async{
+    loading = true;
+
+    await Future.delayed(Duration(seconds: 3));
+
+    loading = false;
+  }
+
 }
