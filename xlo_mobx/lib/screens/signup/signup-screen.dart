@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:xlomobx/components/error_box.dart';
 import 'package:xlomobx/screens/signup/components/field_title.dart';
 import 'package:xlomobx/stores/signup_store.dart';
 
@@ -32,6 +33,9 @@ class SignupScreen extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
+                    Observer(builder: (_) {
+                      return ErrorBox(message: signupStore.error);
+                    }),
                     FieldTitle(
                       title: 'Apelido',
                       subtitle: 'Como aparecerá em seus anúncios.',
@@ -135,9 +139,9 @@ class SignupScreen extends StatelessWidget {
                           disabledColor: Colors.orange.withAlpha(120),
                           child: signupStore.loading
                               ? CircularProgressIndicator(
-                                  valueColor:
-                                      AlwaysStoppedAnimation(Colors.white),
-                                )
+                            valueColor:
+                            AlwaysStoppedAnimation(Colors.white),
+                          )
                               : Text('CADASTRAR'),
                           textColor: Colors.white,
                           elevation: 0,

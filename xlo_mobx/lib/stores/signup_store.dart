@@ -1,5 +1,7 @@
 import 'package:mobx/mobx.dart';
 import 'package:xlomobx/helpers/extension.dart';
+import 'package:xlomobx/models/user.dart';
+import 'package:xlomobx/repositories/user_repository.dart';
 
 part 'signup_store.g.dart';
 
@@ -100,16 +102,26 @@ abstract class _SignupStore with Store {
 
   @computed
   Function get signUpPressed => (isFormValid && !loading) ? _signUp : null;
-  
+
   @observable
   bool loading = false;
 
-  Future<void> _signUp() async{
+  @observable
+  String error;
+
+  @action
+  Future<void> _signUp() async {
     loading = true;
 
-    await Future.delayed(Duration(seconds: 3));
+    final user = User(name: name, email: email, phone: phone, password: pass1);
+
+    try {
+      final resultUser = await UserRepository().signUp(user);
+      print(resultUser);
+    } catch (e) {
+      error = e;
+    }
 
     loading = false;
   }
-
 }

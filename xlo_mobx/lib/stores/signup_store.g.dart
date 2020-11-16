@@ -61,7 +61,7 @@ mixin _$SignupStore on _SignupStore, Store {
   final _$nameAtom = Atom(name: '_SignupStore.name');
 
   @override
-  dynamic get name {
+  String get name {
     _$nameAtom.reportRead();
     return super.name;
   }
@@ -76,7 +76,7 @@ mixin _$SignupStore on _SignupStore, Store {
   final _$emailAtom = Atom(name: '_SignupStore.email');
 
   @override
-  dynamic get email {
+  String get email {
     _$emailAtom.reportRead();
     return super.email;
   }
@@ -91,7 +91,7 @@ mixin _$SignupStore on _SignupStore, Store {
   final _$phoneAtom = Atom(name: '_SignupStore.phone');
 
   @override
-  dynamic get phone {
+  String get phone {
     _$phoneAtom.reportRead();
     return super.phone;
   }
@@ -106,7 +106,7 @@ mixin _$SignupStore on _SignupStore, Store {
   final _$pass1Atom = Atom(name: '_SignupStore.pass1');
 
   @override
-  dynamic get pass1 {
+  String get pass1 {
     _$pass1Atom.reportRead();
     return super.pass1;
   }
@@ -121,7 +121,7 @@ mixin _$SignupStore on _SignupStore, Store {
   final _$pass2Atom = Atom(name: '_SignupStore.pass2');
 
   @override
-  dynamic get pass2 {
+  String get pass2 {
     _$pass2Atom.reportRead();
     return super.pass2;
   }
@@ -146,6 +146,28 @@ mixin _$SignupStore on _SignupStore, Store {
     _$loadingAtom.reportWrite(value, super.loading, () {
       super.loading = value;
     });
+  }
+
+  final _$errorAtom = Atom(name: '_SignupStore.error');
+
+  @override
+  String get error {
+    _$errorAtom.reportRead();
+    return super.error;
+  }
+
+  @override
+  set error(dynamic value) {
+    _$errorAtom.reportWrite(value, super.error, () {
+      super.error = value;
+    });
+  }
+
+  final _$_signUpAsyncAction = AsyncAction('_SignupStore._signUp');
+
+  @override
+  Future<void> _signUp() {
+    return _$_signUpAsyncAction.run(() => super._signUp());
   }
 
   final _$_SignupStoreActionController = ActionController(name: '_SignupStore');
@@ -214,6 +236,7 @@ phone: ${phone},
 pass1: ${pass1},
 pass2: ${pass2},
 loading: ${loading},
+error: ${error},
 nameValid: ${nameValid},
 emailValid: ${emailValid},
 phoneValid: ${phoneValid},
