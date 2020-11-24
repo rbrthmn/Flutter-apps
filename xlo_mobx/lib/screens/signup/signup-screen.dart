@@ -89,7 +89,7 @@ class SignupScreen extends StatelessWidget {
                         onChanged: signupStore.setPhone,
                         keyboardType: TextInputType.phone,
                         inputFormatters: [
-                          WhitelistingTextInputFormatter.digitsOnly,
+                          FilteringTextInputFormatter.digitsOnly,
                           TelefoneInputFormatter()
                         ],
                       );
@@ -139,9 +139,9 @@ class SignupScreen extends StatelessWidget {
                           disabledColor: Colors.orange.withAlpha(120),
                           child: signupStore.loading
                               ? CircularProgressIndicator(
-                            valueColor:
-                            AlwaysStoppedAnimation(Colors.white),
-                          )
+                                  valueColor:
+                                      AlwaysStoppedAnimation(Colors.white),
+                                )
                               : Text('CADASTRAR'),
                           textColor: Colors.white,
                           elevation: 0,

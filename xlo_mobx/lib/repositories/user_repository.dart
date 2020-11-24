@@ -1,4 +1,4 @@
-import 'package:parse_server_sdk/parse_server_sdk.dart';
+import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 import 'package:xlomobx/models/user.dart';
 import 'package:xlomobx/repositories/parse_errors.dart';
 import 'package:xlomobx/repositories/table_keys.dart';
@@ -16,6 +16,20 @@ class UserRepository {
     if (response.success) {
       return mapParseToUser(response.result);
     } else {
+      return Future.error(ParseErrors.getDescription(response.error.code));
+    }
+  }
+
+  Future<User> loginWithEmail(String email, String password) async {
+    final parseUser = ParseUser(email, password, null);
+
+    final response = await parseUser.login();
+
+    if(response.success) {
+      return mapParseToUser(response.result);
+    } else {
+      print('error');
+      print(response.error.code);
       return Future.error(ParseErrors.getDescription(response.error.code));
     }
   }

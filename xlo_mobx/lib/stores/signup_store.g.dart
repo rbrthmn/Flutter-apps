@@ -67,7 +67,7 @@ mixin _$SignupStore on _SignupStore, Store {
   }
 
   @override
-  set name(dynamic value) {
+  set name(String value) {
     _$nameAtom.reportWrite(value, super.name, () {
       super.name = value;
     });
@@ -82,7 +82,7 @@ mixin _$SignupStore on _SignupStore, Store {
   }
 
   @override
-  set email(dynamic value) {
+  set email(String value) {
     _$emailAtom.reportWrite(value, super.email, () {
       super.email = value;
     });
@@ -97,7 +97,7 @@ mixin _$SignupStore on _SignupStore, Store {
   }
 
   @override
-  set phone(dynamic value) {
+  set phone(String value) {
     _$phoneAtom.reportWrite(value, super.phone, () {
       super.phone = value;
     });
@@ -112,7 +112,7 @@ mixin _$SignupStore on _SignupStore, Store {
   }
 
   @override
-  set pass1(dynamic value) {
+  set pass1(String value) {
     _$pass1Atom.reportWrite(value, super.pass1, () {
       super.pass1 = value;
     });
@@ -127,7 +127,7 @@ mixin _$SignupStore on _SignupStore, Store {
   }
 
   @override
-  set pass2(dynamic value) {
+  set pass2(String value) {
     _$pass2Atom.reportWrite(value, super.pass2, () {
       super.pass2 = value;
     });
@@ -157,7 +157,7 @@ mixin _$SignupStore on _SignupStore, Store {
   }
 
   @override
-  set error(dynamic value) {
+  set error(String value) {
     _$errorAtom.reportWrite(value, super.error, () {
       super.error = value;
     });
@@ -173,7 +173,7 @@ mixin _$SignupStore on _SignupStore, Store {
   final _$_SignupStoreActionController = ActionController(name: '_SignupStore');
 
   @override
-  void setName(dynamic value) {
+  void setName(String value) {
     final _$actionInfo = _$_SignupStoreActionController.startAction(
         name: '_SignupStore.setName');
     try {
@@ -184,7 +184,7 @@ mixin _$SignupStore on _SignupStore, Store {
   }
 
   @override
-  void setEmail(dynamic value) {
+  void setEmail(String value) {
     final _$actionInfo = _$_SignupStoreActionController.startAction(
         name: '_SignupStore.setEmail');
     try {
@@ -195,7 +195,7 @@ mixin _$SignupStore on _SignupStore, Store {
   }
 
   @override
-  void setPhone(dynamic value) {
+  void setPhone(String value) {
     final _$actionInfo = _$_SignupStoreActionController.startAction(
         name: '_SignupStore.setPhone');
     try {
@@ -206,7 +206,7 @@ mixin _$SignupStore on _SignupStore, Store {
   }
 
   @override
-  void setPass1(dynamic value) {
+  void setPass1(String value) {
     final _$actionInfo = _$_SignupStoreActionController.startAction(
         name: '_SignupStore.setPass1');
     try {
@@ -217,7 +217,7 @@ mixin _$SignupStore on _SignupStore, Store {
   }
 
   @override
-  void setPass2(dynamic value) {
+  void setPass2(String value) {
     final _$actionInfo = _$_SignupStoreActionController.startAction(
         name: '_SignupStore.setPass2');
     try {
