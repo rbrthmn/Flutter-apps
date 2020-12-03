@@ -6,6 +6,7 @@ import 'package:xlomobx/stores/create_store.dart';
 
 import 'components/category_field.dart';
 import 'components/cep_field.dart';
+import 'components/hide_phone_field.dart';
 import 'components/images_field.dart';
 
 class CreateScreen extends StatelessWidget {
@@ -31,6 +32,7 @@ class CreateScreen extends StatelessWidget {
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
           elevation: 8,
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisSize: MainAxisSize.min,
             children: [
               ImagesField(createStore),
@@ -64,6 +66,21 @@ class CreateScreen extends StatelessWidget {
                   RealInputFormatter(centavos: true),
                 ],
               ),
+              HidePhoneField(createStore),
+              SizedBox(
+                height: 50,
+                child: RaisedButton(
+                  onPressed: () {},
+                  child: Text(
+                    'Enviar',
+                    style: TextStyle(fontSize: 18),
+                  ),
+                  color: Colors.orange,
+                  disabledColor: Colors.orange.withAlpha(120),
+                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                  textColor: Colors.white,
+                ),
+              )
             ],
           ),
         ),
