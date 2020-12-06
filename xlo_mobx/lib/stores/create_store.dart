@@ -1,7 +1,11 @@
+import 'package:get_it/get_it.dart';
 import 'package:mobx/mobx.dart';
+import 'package:xlomobx/models/ad.dart';
 import 'package:xlomobx/models/address.dart';
 import 'package:xlomobx/models/category.dart';
+import 'package:xlomobx/repositories/ad_repository.dart';
 import 'package:xlomobx/stores/cep_store.dart';
+import 'package:xlomobx/stores/user_manager_store.dart';
 
 part 'create_store.g.dart';
 
@@ -129,5 +133,17 @@ abstract class _CreateStore with Store {
   @action
   void invalidSendPressed() => showErrors = true;
 
-  void _send() {}
+  void _send() {
+    final ad = Ad();
+    ad.title = title;
+    ad.description = description;
+    ad.category = category;
+    ad.price = price;
+    ad.hidePhone = hidePhone;
+    ad.images = images;
+    ad.address =  address;
+    ad.user = GetIt.I<UserManagerStore>().user;
+
+    AdRepository().save(ad);
+  }
 }
