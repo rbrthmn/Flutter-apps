@@ -16,6 +16,7 @@ abstract class _CreateStore with Store {
 
   @computed
   bool get imagesValid => images.isNotEmpty;
+
   String get imagesError {
     if (imagesValid || !showErrors)
       return null;
@@ -31,6 +32,7 @@ abstract class _CreateStore with Store {
 
   @computed
   bool get titleValid => title.length >= 6;
+
   String get titleError {
     if (titleValid || !showErrors)
       return null;
@@ -48,6 +50,7 @@ abstract class _CreateStore with Store {
 
   @computed
   bool get descriptionValid => description.length >= 10;
+
   String get descriptionError {
     if (descriptionValid || !showErrors)
       return null;
@@ -65,6 +68,7 @@ abstract class _CreateStore with Store {
 
   @computed
   bool get categoryValid => category != null;
+
   String get categoryError {
     if (categoryValid || !showErrors)
       return null;
@@ -76,7 +80,9 @@ abstract class _CreateStore with Store {
 
   @computed
   Address get address => cepStore.address;
+
   bool get addressValid => address != null;
+
   String get addressError {
     if (addressValid || !showErrors)
       return null;
@@ -100,6 +106,7 @@ abstract class _CreateStore with Store {
   }
 
   bool get priceValid => price != null && price <= 9999999;
+
   String get priceError {
     if (priceValid || !showErrors)
       return null;
@@ -133,7 +140,17 @@ abstract class _CreateStore with Store {
   @action
   void invalidSendPressed() => showErrors = true;
 
-  void _send() {
+  @observable
+  bool loading = false;
+
+  @observable
+  String error;
+
+  @observable
+  Ad savedAd;
+
+  @action
+  Future<void> _send() async {
     final ad = Ad();
     ad.title = title;
     ad.description = description;
@@ -141,9 +158,15 @@ abstract class _CreateStore with Store {
     ad.price = price;
     ad.hidePhone = hidePhone;
     ad.images = images;
-    ad.address =  address;
+    ad.address = address;
     ad.user = GetIt.I<UserManagerStore>().user;
 
-    AdRepository().save(ad);
+    loading = true;
+    try {
+      savedAd = await AdRepository().save(ad);
+    } catch (e) {
+      error = e;
+    }
+    loading = false;
   }
 }
