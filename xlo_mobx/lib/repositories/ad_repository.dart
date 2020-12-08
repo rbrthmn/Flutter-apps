@@ -1,15 +1,14 @@
 import 'dart:io';
 
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
-import 'package:xlomobx/models/ad.dart';
 import 'package:path/path.dart' as path;
+import 'package:xlomobx/models/ad.dart';
 import 'package:xlomobx/repositories/parse_errors.dart';
 import 'package:xlomobx/repositories/table_keys.dart';
 
 class AdRepository {
-  Future<Ad> save(Ad ad) async {
-    try{
-
+  Future<void> save(Ad ad) async {
+    try {
       final parseImages = await saveImages(ad.images);
 
       final parseUser = await ParseUser.currentUser();
@@ -41,9 +40,7 @@ class AdRepository {
 
       final response = await adObject.save();
 
-      if(response.success) {
-        return Ad.fromParse(response.result);
-      } else {
+      if (!response.success) {
         return Future.error(ParseErrors.getDescription(response.error.code));
       }
     } catch (e) {

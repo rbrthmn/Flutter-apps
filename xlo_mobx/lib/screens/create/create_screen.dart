@@ -22,12 +22,11 @@ class CreateScreen extends StatefulWidget {
 class _CreateScreenState extends State<CreateScreen> {
   final CreateStore createStore = CreateStore();
 
-
   @override
   void initState() {
     super.initState();
-    
-    when((_) => createStore.savedAd != null, () {
+
+    when((_) => createStore.savedAd, () {
       GetIt.I<PageStore>().setPage(0);
     });
   }
