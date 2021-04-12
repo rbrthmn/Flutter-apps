@@ -17,8 +17,10 @@ class CepRepository {
     try {
       final response = await Dio().get<Map>(endpoint);
 
-      if (response.data.containsKey('erro') && response.data['erro'])
+      if (response.data.containsKey('erro') && response.data['erro']) {
+        print("erro ao usar servico");
         return invalidCep;
+      }
 
       final ufList = await IBGERepository().getUFList();
 
@@ -28,6 +30,7 @@ class CepRepository {
           city: City(name: response.data['localidade']),
           uf: ufList.firstWhere((uf) => uf.initials == response.data['uf']));
     } catch (e) {
+      print(e);
       return Future.error('Falha ao buscar CEP');
     }
   }

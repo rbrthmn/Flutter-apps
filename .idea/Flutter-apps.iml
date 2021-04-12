@@ -11,6 +11,8 @@
       <excludeFolder url="file://$MODULE_DIR$/currency_converter/build" />
       <excludeFolder url="file://$MODULE_DIR$/flare_test/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/flare_test/build" />
+      <excludeFolder url="file://$MODULE_DIR$/floating_button/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/floating_button/build" />
       <excludeFolder url="file://$MODULE_DIR$/flutter_shop_admin/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/flutter_shop_admin/build" />
       <excludeFolder url="file://$MODULE_DIR$/gif_finder/.pub" />
@@ -27,6 +29,8 @@
       <excludeFolder url="file://$MODULE_DIR$/todo_mobx/build" />
       <excludeFolder url="file://$MODULE_DIR$/virtual_shop/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/virtual_shop/build" />
+      <excludeFolder url="file://$MODULE_DIR$/xlo_mobx/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/xlo_mobx/build" />
       <excludeFolder url="file://$MODULE_DIR$/youtube_favorites/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/youtube_favorites/build" />
     </content>
